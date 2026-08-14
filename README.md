@@ -208,7 +208,7 @@ Explains the Five Design-Sheet process, chart selection, narrative structure, vi
 介绍五张设计图方法、图表选择、叙事结构、视觉变量、联动交互、技术实现和页面使用方法。
 
 - [Read the Data Visualisation Documentation / 阅读数据可视化文档](数据可视化与D3页面文档DVP/README.md)
-- [View the Public DVP Report / 查看公开版DVP报告](DEP-Report-public.pdf.pdf)
+- [View the Public DVP Report / 查看公开版DVP报告](数据可视化与D3页面文档DVP/DEP-Report-public.pdf.pdf)
 
 ## Running the Visualisation Locally | 本地运行方法
 
