@@ -199,7 +199,7 @@ Explains the source data, initial audit, GTFS joins, spatial aggregation, indica
 介绍数据来源、初始检查、GTFS 表格连接、空间汇总、指标计算、数据质量问题以及最终输出数据。
 
 - [Read the Data Exploration Documentation / 阅读数据探索文档](数据探索与处理文档DEP/README.md)
-- [View the Public DEP Report / 查看公开版DEP报告](数据可视化与D3页面文档DVP.pdf)
+- [View the Public DEP Report / 查看公开版DEP报告](数据探索与处理文档DEP/README.md)
 
 ### 2. Interactive Data Visualisation | 交互式数据可视化
 
@@ -207,8 +207,8 @@ Explains the Five Design-Sheet process, chart selection, narrative structure, vi
 
 介绍五张设计图方法、图表选择、叙事结构、视觉变量、联动交互、技术实现和页面使用方法。
 
-- [Read the Data Visualisation Documentation / 阅读数据可视化文档](documentation/02-data-visualisation/README.md)
-- [View the Public DVP Report / 查看公开版DVP报告](documentation/02-data-visualisation/DVP-Report-public.pdf)
+- [Read the Data Visualisation Documentation / 阅读数据可视化文档](数据可视化与D3页面文档DVP.pdf)
+- [View the Public DVP Report / 查看公开版DVP报告](数据可视化与D3页面文档DVP.pdf)
 
 ## Running the Visualisation Locally | 本地运行方法
 
