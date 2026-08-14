@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Public Transport Inequality Explorer</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">Victorian public transport access</p>
+
+        <h1>Some places are connected on paper, but disconnected in daily life.</h1>
+
+        <p class="hero-lead">
+          A station, stop, or route can suggest that an area is connected, 
+          but it does not necessarily mean that public transport is usable in 
+          everyday life. For residents, the real question is whether services 
+          are frequent enough, run late enough, operate reliably on weekends, 
+          and provide more than one practical travel option. This project therefore 
+          looks beyond the simple presence of infrastructure and focuses on the service 
+          conditions that shape day-to-day mobility.
+
+    </p>
+
+    <div class="hero-question">
+      <span>This explorer asks:</span>
+      <strong>Where does the network look available, but feel difficult to use?</strong>
+    </div>
+  </div>
+  </header>
+
+  <main class="story-page">
+
+    <!-- =========================
+         Narrative intro
+         ========================= -->
+    <section class="story-intro">
+        <p class="storyline-lead">
+            This visualisation tells the story in stages. 
+            It begins with the map, which shows how public 
+            transport service gaps are distributed across Victorian LGAs. 
+            The ranking chart then identifies the most underserved areas 
+            under the selected metric. From there, users can select up to 
+            three LGAs on the map or ranking chart to inspect and compare 
+            their inequality profiles, including the factors behind each 
+            score and how late services continue to run. The story then widens 
+            again through the weekday-versus-weekend comparison, 
+            the coverage-and-intensity bubble chart, and the conclusion matrix, 
+            which summarise whether disadvantage is driven by limited coverage, 
+            weak frequency, short service span, poor weekend availability, 
+            or lack of mode diversity.
+
+        </p>
+    </section>
+
+    <!-- =========================
+         Control panel
+         ========================= -->
+    <section class="control-panel" aria-label="Control panel">
+      <div class="control-title">
+        <h2>Choose a lens</h2>
+        <p>Change the metric, mode, or region to reshape the story below. Then use the map:
+            hover to read values, or click an LGA to drive the linked views below.
+        </p>
+      </div>
+
+      <div class="control-group">
+        <label for="region-select">Region type</label>
+        <select id="region-select">
+          <option value="All">All regions</option>
+          <option value="Inner Melbourne">Inner Melbourne</option>
+          <option value="Outer Melbourne">Outer Melbourne</option>
+          <option value="Regional Victoria">Regional Victoria</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="mode-select">Mode</label>
+        <select id="mode-select">
+          <option value="All">All modes</option>
+          <option value="Bus">Bus</option>
+          <option value="Train">Train</option>
+          <option value="Tram">Tram</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="metric-select">Metric</label>
+        <select id="metric-select">
+          <option value="overall_score">Overall inequality score</option>
+          <option value="coverage_gap">Coverage gap</option>
+          <option value="frequency_gap">Frequency gap</option>
+          <option value="service_gap">Service gap</option>
+          <option value="weekend_weekday_gap">Weekend-weekday gap</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="topn-select">Show</label>
+        <select id="topn-select">
+          <option value="5">Top 5 LGAs</option>
+          <option value="10" selected>Top 10 LGAs</option>
+          <option value="20">Top 20 LGAs</option>
+        </select>
+      </div>
+
+      <button id="reset-button" type="button">
+        Reset view
+      </button>
+    </section>
+
+    <!-- =========================
+         Story beat: overview
+         ========================= -->
+    <section class="story-beat">
+      <p class="beat-label">Start with geography</p>
+      <h2>The map is not just a picture. It is the main way into the story.</h2>
+      <p>
+        Use the map as the entry point into the story. 
+        Darker LGAs show stronger service gaps under the selected metric. 
+        Hover to inspect exact values, or select up to three LGAs to compare 
+        their scores, service span, weekday-weekend patterns, coverage intensity, 
+        and overall summary
+      </p>
+    </section>
+
+    <section class="grid primary-grid">
+      <article class="card map-card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Spatial overview</p>
+            <h3>Inequality across Victorian LGAs</h3>
+            <p>Colour intensity will represent the selected metric.</p>
+          </div>
+          <span class="chart-tag">Map</span>
+        </div>
+
+        <div id="map" class="chart-placeholder">
+          Map will be drawn here.
+        </div>
+      </article>
+
+      <article class="card ranking-card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Ranked comparison</p>
+            <h3>Most underserved LGAs</h3>
+            <p>The bar chart will rank LGAs by the selected metric.</p>
+          </div>
+          <span class="chart-tag">Ranking</span>
+        </div>
+
+        <div id="ranking-bar" class="chart-placeholder">
+          Ranking bar chart will be drawn here.
+        </div>
+      </article>
+    </section>
+
+    <!-- =========================
+         Story beat: selected LGA
+         ========================= -->
+    <section class="story-beat">
+      <p class="beat-label">Look closer</p>
+      <h2>A high score should lead to an explanation, not just a label.</h2>
+      <p>
+        Clicking an LGA will reveal whether its score is driven by coverage, frequency,
+        service span, mode diversity, or a weekday-weekend service gap.
+      </p>
+    </section>
+
+    <section class="grid secondary-grid">
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Selected local story</p>
+            <h3>LGA profile</h3>
+            <p>Detailed gap indicators for the selected area.</p>
+          </div>
+          <span class="chart-tag">Detail</span>
+        </div>
+
+        <div id="lga-profile" class="chart-placeholder">
+          Click an LGA on the map or ranking chart to inspect its profile.
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Daily usability</p>
+            <h3>How late does service run?</h3>
+            <p>First and last service times for Bus, Train, and Tram.</p>
+          </div>
+          <span class="chart-tag">Time span</span>
+        </div>
+
+        <div id="service-span" class="chart-placeholder">
+          Service span chart will be drawn here.
+        </div>
+      </article>
+    </section>
+
+    <!-- =========================
+         Story beat: deeper pattern
+         ========================= -->
+    <section class="story-beat">
+      <p class="beat-label">Compare lived experience</p>
+      <h2>Coverage alone does not tell the whole story.</h2>
+      <p>
+        Two areas can look similarly covered, but one may have far fewer trips, weaker weekend service,
+        or fewer practical mode choices. These views help separate access from usefulness.
+      </p>
+    </section>
+
+    <section class="grid secondary-grid">
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Week structure</p>
+            <h3>Weekday versus weekend service</h3>
+            <p>Dumbbell chart comparing weekday and weekend service levels.</p>
+          </div>
+          <span class="chart-tag">Dumbbell</span>
+        </div>
+
+        <div id="dumbbell-chart" class="chart-placeholder">
+          Dumbbell chart will be drawn here.
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Coverage and intensity</p>
+            <h3>Are places covered, or well served?</h3>
+            <p>Bubble size represents GTFS stop events; colour represents the selected inequality metric.</p>
+          </div>
+          <span class="chart-tag">Bubble</span>
+        </div>
+
+        <div id="bubble-chart" class="chart-placeholder">
+          Bubble chart will be drawn here.
+        </div>
+      </article>
+    </section>
+
+    <!-- =========================
+         Conclusion
+         ========================= -->
+    <section class="story-beat final-beat">
+      <p class="beat-label">What to take away</p>
+      <h2>Transport inequality is a combination of place, time, and service quality.</h2>
+      <p>
+        The final matrix will summarise which region and mode combinations are most affected,
+        helping the audience move from individual LGAs to the broader pattern.
+      </p>
+    </section>
+
+    <section class="card conclusion-card">
+      <div class="card-header">
+        <div>
+          <p class="card-kicker">Summary</p>
+          <h3>Conclusion matrix</h3>
+          <p>Main inequality patterns by region and mode.</p>
+        </div>
+        <span class="chart-tag">Takeaway</span>
+      </div>
+
+      <div id="conclusion-matrix" class="chart-placeholder">
+        Conclusion matrix will be drawn here.
+      </div>
+    </section>
+
+  </main>
+
+  <div id="tooltip" class="tooltip hidden"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
