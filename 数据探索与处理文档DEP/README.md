@@ -183,9 +183,9 @@ The submitted R file is an exploratory script and contains repeated setup and an
 ### 10. Related project files
 
 - [View the public DEP report](DEP-Report-public.pdf)
-- [View the R analysis folder](../../analysis/)
-- [Return to the main project README](../../README.md)
-- [Continue to the data visualisation documentation](../02-data-visualisation/README.md)
+- [View the R analysis folder](R-code.R)
+- [Return to the main project README](../README.md)
+- [Continue to the data visualisation documentation](../数据可视化与D3页面文档DVP/README.md)
 
 ---
 
@@ -360,9 +360,9 @@ DEP 阶段生成了以下数据检查结果和分析图表：
 ### 10. 相关项目文件
 
 - [查看公开版 DEP 报告](DEP-Report-public.pdf)
-- [查看 R 分析文件夹](../../analysis/)
-- [返回项目总 README](../../README.md)
-- [继续阅读数据可视化文档](../02-data-visualisation/README.md)
+- [查看 R 分析文件夹](../R-code.R)
+- [返回项目总 README](../README.md)
+- [继续阅读数据可视化文档](../数据可视化与D3页面文档DVP/README.md)
 
 ---
 
