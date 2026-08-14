@@ -198,7 +198,7 @@ The page requires two processed files:
 | `data/processed/lga_metrics.csv` | LGA- and mode-level service measures, gap indicators and overall scores |
 | `data/processed/vic_lga_2025_simplified.geojson` | Simplified Victorian LGA geometries used by the choropleth map |
 
-The two files must share a consistent LGA identifier or LGA name so that each metric record can be joined to the correct geometry. Indicator definitions and preparation steps are documented in the [Data Exploration and Preparation README](../01-data-exploration/README.md).
+The two files must share a consistent LGA identifier or LGA name so that each metric record can be joined to the correct geometry. Indicator definitions and preparation steps are documented in the [Data Exploration and Preparation README]../01-data-exploration/README.md).
 
 ### 10. Required project files
 
@@ -279,7 +279,7 @@ http://localhost:8000
 
 ### 15. Related files
 
-- [View the public DVP report](DVP-Report-public.pdf)
+- [View the public DVP report](DVP-Report-public.pdf.pdf)
 - [Read the data exploration documentation](../数据探索与处理文档DEP/README.md)
 - [Return to the main project README](../../README.md)
 
@@ -469,7 +469,7 @@ flowchart LR
 | `data/processed/lga_metrics.csv` | 保存 LGA 和交通方式层面的服务指标、差距指标与综合得分 |
 | `data/processed/vic_lga_2025_simplified.geojson` | 保存分级设色地图使用的维多利亚州 LGA 简化边界 |
 
-两个文件必须使用一致的 LGA 标识或 LGA 名称，确保指标记录能够连接到正确的地图区域。指标定义和准备步骤请参阅[数据探索与准备 README](../01-data-exploration/README.md)。
+两个文件必须使用一致的 LGA 标识或 LGA 名称，确保指标记录能够连接到正确的地图区域。指标定义和准备步骤请参阅[数据探索与准备 README](../数据探索与处理文档DEP/README.md)。
 
 ### 10. 必需的项目文件
 
@@ -545,7 +545,7 @@ http://localhost:8000
 
 ### 15. 相关文件
 
-- [查看公开版 DVP 报告](DVP-Report-public.pdf)
+- [查看公开版 DVP 报告](DVP-Report-public.pdf.pdf)
 - [阅读数据探索与准备文档](../数据探索与处理文档DEP/README.md)
 - [返回项目总 README](../../README.md)
 
